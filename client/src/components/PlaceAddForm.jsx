@@ -39,13 +39,13 @@ export default function AddPlaceForm({
   const [image, setImage] = useState(null);
   const [googleLink, setGoogleLink] = useState("");
   const [openTimes, setOpenTimes] = useState({
-    monday: "",
-    tuesday: "",
-    wednesday: "",
-    thursday: "",
-    friday: "",
-    saturday: "",
-    sunday: "",
+    Monday: "",
+    Tuesday: "",
+    Wednesday: "",
+    Thursday: "",
+    Friday: "",
+    Saturday: "",
+    Sunday: "",
   });
   const [loading, setLoading] = useState(false);
 
@@ -82,13 +82,13 @@ export default function AddPlaceForm({
       setImage("");
       setGoogleLink("");
       setOpenTimes({
-        monday: "",
-        tuesday: "",
-        wednesday: "",
-        thursday: "",
-        friday: "",
-        saturday: "",
-        sunday: "",
+        Monday: "",
+        Tuesday: "",
+        Wednesday: "",
+        Thursday: "",
+        Friday: "",
+        Saturday: "",
+        Sunday: "",
       });
       onSuccess?.();
     } catch (err) {

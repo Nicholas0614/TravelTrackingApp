@@ -916,7 +916,7 @@ export default function HomePage() {
                                     }}
                                   >
                                     {wishlist.some(
-                                      (w) => w.place._id === place._id
+                                      (w) => w.place?._id === place._id
                                     ) ? (
                                       <Box>
                                         {animationredlove && (

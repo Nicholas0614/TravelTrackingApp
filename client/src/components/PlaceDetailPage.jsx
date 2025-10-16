@@ -502,21 +502,30 @@ export default function PlaceDetailPage() {
                   </Box>
                 )}
                 <Box sx={{ flex: 1 }}>
-                  {Object.entries(place.openTimes).map(([day, time]) => (
-                    <Box
-                      key={day}
-                      sx={{
-                        display: "flex",
-                        justifyContent: "space-between",
-                        alignItems: "center",
-                        pl: 1.5,
-                        py: 0.5,
-                      }}
+                  {place?.openTimes ? (
+                    Object.entries(place.openTimes).map(([day, time]) => (
+                      <Box
+                        key={day}
+                        sx={{
+                          display: "flex",
+                          justifyContent: "space-between",
+                          alignItems: "center",
+                          pl: 1.5,
+                          py: 0.5,
+                        }}
+                      >
+                        <Typography variant="body1">{day}</Typography>
+                        <Typography variant="body1">{time || "—"}</Typography>
+                      </Box>
+                    ))
+                  ) : (
+                    <Typography
+                      variant="body2"
+                      sx={{ pl: 1.5, py: 0.5, color: "text.secondary" }}
                     >
-                      <Typography variant="body1">{day}</Typography>
-                      <Typography variant="body1">{time}</Typography>
-                    </Box>
-                  ))}
+                      No opening times available
+                    </Typography>
+                  )}
                 </Box>
               </Box>
             </CardContent>
@@ -544,7 +553,7 @@ export default function PlaceDetailPage() {
                   onClick={() => handleWishlistToggle(place)}
                   disabled={!token}
                 >
-                  {wishlist.some((w) => w.place._id === place._id) ? (
+                  {wishlist.some((w) => w.place?._id === place._id) ? (
                     <Box>
                       {animationredlove && (
                         <Box
