@@ -210,7 +210,7 @@ export default function HomePage() {
 
   const handleWishlistToggle = async (place) => {
     try {
-      const existing = wishlist.find((item) => item.place._id === place._id);
+      const existing = wishlist.find((item) => item.place?._id === place._id);
       if (existing) {
         await removeFromWishlist(place._id, token);
         toast.success("Removed From Wishlist");
@@ -934,7 +934,7 @@ export default function HomePage() {
                                     }}
                                   >
                                     {wishlist.some(
-                                      (w) => w.place?._id === place.id
+                                      (w) => w.place?._id === place._id
                                     ) ? (
                                       <Box>
                                         {animationredlove && (

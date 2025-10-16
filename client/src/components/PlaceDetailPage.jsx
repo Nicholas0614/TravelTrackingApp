@@ -168,7 +168,7 @@ export default function PlaceDetailPage() {
   // ---------------- Wishlist toggle ----------------
   const handleWishlistToggle = async (place) => {
     try {
-      const existing = wishlist.find((w) => w.place._id === place._id);
+      const existing = wishlist.find((w) => w.place?._id === place._id);
       if (existing) {
         await removeFromWishlist(place._id, token);
         toast.success("Removed from Wishlist");

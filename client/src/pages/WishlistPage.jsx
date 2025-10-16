@@ -55,7 +55,7 @@ export default function WishlistPage() {
     try {
       await removeFromWishlist(placeId, token);
       toast.success("Removed from wishlist");
-      setWishlist((prev) => prev.filter((item) => item.place._id !== placeId));
+      setWishlist((prev) => prev.filter((item) => item.place?._id !== placeId));
     } catch (err) {
       console.error(err);
     }
@@ -70,6 +70,8 @@ export default function WishlistPage() {
       </Container>
     );
   }
+
+  const validWishlist = wishlist.filter((item) => item.place);
 
   return (
     <Container maxWidth="xl" sx={{ py: 6, position: "relative" }}>
@@ -97,7 +99,7 @@ export default function WishlistPage() {
       </Box>
 
       {/* Empty State */}
-      {wishlist.length === 0 ? (
+      {validWishlist.length === 0 ? (
         <Box
           sx={{
             display: "flex",
@@ -110,7 +112,7 @@ export default function WishlistPage() {
         </Box>
       ) : (
         <Grid container spacing={4}>
-          {wishlist
+          {validWishlist
             .filter((item) => item.place)
             .map((item) => (
               <Grid item xs={12} sm={6} md={3} key={item._id}>
