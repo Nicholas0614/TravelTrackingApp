@@ -241,6 +241,12 @@ export default function TripDetailPage() {
                             opacity: 0,
                             transition: "all 0.35s ease",
                             pointerEvents: "none",
+
+                            "@media (max-width: 600px)": {
+                              transform: "translateY(0)",
+                              opacity: 1,
+                              pointerEvents: "auto",
+                            },
                           }}
                         >
                           <IconButton
