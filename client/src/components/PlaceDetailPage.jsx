@@ -502,7 +502,7 @@ export default function PlaceDetailPage() {
                   </Box>
                 )}
                 <Box sx={{ flex: 1 }}>
-                  {Object.entries(place.openTimes).map(([day, time]) => (
+                  {Object.entries(place.openTimes || {}).map(([day, time]) => (
                     <Box
                       key={day}
                       sx={{
