@@ -110,67 +110,69 @@ export default function WishlistPage() {
         </Box>
       ) : (
         <Grid container spacing={4}>
-          {wishlist.map((item) => (
-            <Grid item xs={12} sm={6} md={3} key={item._id}>
-              <Card
-                sx={{
-                  borderRadius: 4,
-                  overflow: "hidden",
-                  position: "relative",
-                  cursor: "pointer",
-                  transition: "all 0.3s ease",
-                  "&:hover": {
-                    transform: "translateY(-6px) scale(1.03)",
-                    boxShadow: 6,
-                  },
-                }}
-                onClick={() => navigate(`/places/${item.place._id}`)}
-              >
-                <CardMedia
-                  component="img"
-                  height="200"
-                  image={
-                    API_URL +
-                    (item.place.image
-                      ? item.place.image
-                      : "uploads/default_image.jpg")
-                  }
-                  alt={item.place.name}
-                />
-                <CardContent>
-                  <Typography variant="h6" fontWeight="bold" sx={{ mb: 0.5 }}>
-                    {item.place.name}
-                  </Typography>
-                  <Typography variant="body2" color="text.secondary">
-                    {item.place.area.city}, {item.place.area.state}
-                  </Typography>
-                </CardContent>
-
-                {/* Heart badge */}
-                <IconButton
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    handleRemove(item.place._id);
-                  }}
+          {wishlist
+            .filter((item) => item.place)
+            .map((item) => (
+              <Grid item xs={12} sm={6} md={3} key={item._id}>
+                <Card
                   sx={{
-                    position: "absolute",
-                    top: 12,
-                    right: 12,
-                    bgcolor: "rgba(255,255,255,0.9)",
-                    borderRadius: "50%",
-                    p: 0.5,
-                    "&:hover": { bgcolor: "rgba(255,255,255,1)" },
+                    borderRadius: 4,
+                    overflow: "hidden",
+                    position: "relative",
+                    cursor: "pointer",
+                    transition: "all 0.3s ease",
+                    "&:hover": {
+                      transform: "translateY(-6px) scale(1.03)",
+                      boxShadow: 6,
+                    },
                   }}
+                  onClick={() => navigate(`/places/${item.place._id}`)}
                 >
-                  {animationredlove && (
-                    <Box sx={{ width: 30, height: 30 }}>
-                      <Lottie animationData={animationredlove} loop />
-                    </Box>
-                  )}
-                </IconButton>
-              </Card>
-            </Grid>
-          ))}
+                  <CardMedia
+                    component="img"
+                    height="200"
+                    image={
+                      API_URL +
+                      (item.place?.image
+                        ? item.place.image
+                        : "uploads/default_image.jpg")
+                    }
+                    alt={item.place?.name || "Unknown Place"}
+                  />
+                  <CardContent>
+                    <Typography variant="h6" fontWeight="bold" sx={{ mb: 0.5 }}>
+                      {item.place?.name || "Unknown Place"}
+                    </Typography>
+                    <Typography variant="body2" color="text.secondary">
+                      {item.place?.area?.city || "Unknown City"},{" "}
+                      {item.place?.area?.state || "Unknown State"}
+                    </Typography>
+                  </CardContent>
+
+                  <IconButton
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      handleRemove(item.place._id);
+                    }}
+                    sx={{
+                      position: "absolute",
+                      top: 12,
+                      right: 12,
+                      bgcolor: "rgba(255,255,255,0.9)",
+                      borderRadius: "50%",
+                      p: 0.5,
+                      "&:hover": { bgcolor: "rgba(255,255,255,1)" },
+                    }}
+                  >
+                    {animationredlove && (
+                      <Box sx={{ width: 30, height: 30 }}>
+                        <Lottie animationData={animationredlove} loop />
+                      </Box>
+                    )}
+                  </IconButton>
+                </Card>
+              </Grid>
+            ))}
         </Grid>
       )}
     </Container>
