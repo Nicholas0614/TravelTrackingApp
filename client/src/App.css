@@ -1,0 +1,3 @@
+.swal2-popup-mui {
+  z-index: 2000 !important; /* higher than MUI Dialog 1300 */
+}
